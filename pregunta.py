@@ -10,13 +10,7 @@ import pandas as pd
 
 
 def ingest_data():
-    df = pd.read_fwf(
-        "clusters_report.txt",
-        widths=[7, 16, 16, 79],
-        header=[0],
-        skiprows=[1, 2, 3]
-    )
-
+    df = pd.read_fwf("clusters_report.txt",widths=[7, 16, 16, 79],header=[0],skiprows=[1, 2, 3])
     lastCluster = 1
     lastPClave = 105
     lastPorcentaje = "15,9 %"
