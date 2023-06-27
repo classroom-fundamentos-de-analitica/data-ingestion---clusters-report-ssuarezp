@@ -25,21 +25,12 @@ def ingest_data():
             df.iloc[i,2] = lastPorcentaje
 
     df = df.groupby(["Cluster", "Cantidad de", "Porcentaje de"])
-
     df = df.agg(lambda x: " ".join(x)).reset_index()
-
     df["Principales palabras clave"] = df["Principales palabras clave"].str.replace(r"\s{2,}", " ", regex=True)
-
     df["Principales palabras clave"] = df["Principales palabras clave"].str.replace(".", "", regex=True)
-
     df["Porcentaje de"] = df["Porcentaje de"].str.slice(0, -2)
     df["Porcentaje de"] = df["Porcentaje de"].str.replace(",", ".").astype(float)
 
-    df.columns = [
-            "cluster",
-            "cantidad_de_palabras_clave",
-            "porcentaje_de_palabras_clave",
-            "principales_palabras_clave"
-    ]
+    df.columns = ["cluster", "cantidad_de_palabras_clave", "porcentaje_de_palabras_clave", "principales_palabras_clave"]
 
     return df
